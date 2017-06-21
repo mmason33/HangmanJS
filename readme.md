@@ -12,3 +12,4 @@ A hangman game made with Vanilla JavaScript
 4. Style the application accordingly
 5. Finalize, refactor and or debug
 6. Deploy to Heroku or GitHub Pages (undecided at this point)
+7. Eat lots of pizza
