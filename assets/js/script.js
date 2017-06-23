@@ -1,11 +1,14 @@
 // HangmanJS
 
-var hardAnswers = ['one', 'two', 'three', 'four', 'five'];
+var hardAnswers = ['interpoolation', 'compiler', 'isomorphic', 'transpiler', 'recursion', 'traversal', 
+'javascript', 'jquery', 'atmospherejs', 'nodejs', 'vuejs', 'angularjs', 'reactjs', 'reactivexjs', 'scope', 'inheritance'];
 var hardWord = hardAnswers[Math.floor(Math.random() * hardAnswers.length)];
-var easyAnswers = ["red", "blue", "orange", "purple", "yellow"];
+var easyAnswers = ['red', 'green', 'blue', 'yellow', 'black', 'orange', 'purple', 'white', 'brown', 'teal', 'pink', 'grey', 'maroon', 'magenta'];
 var easyWord = easyAnswers[Math.floor(Math.random() * easyAnswers.length)];
 var guessList = "";
+var guesses = document.getElementById('guess-list');
 var lives = 10;
+var lifeCount = document.getElementById('lives');
 var main = document.getElementById('main');
 var difficulty = document.getElementById('difficulty');
 
@@ -24,18 +27,20 @@ class Hangman {
 
 	handleKey(letterArray) {
 		var keyPress = event.key.toLowerCase();
-		console.log(keyPress);
-		console.log(letterArray.indexOf(keyPress) === -1);
-		console.log(guessList.indexOf(keyPress) === -1);
+		// var lifeCount = document.getElementById('lives');
+		// console.log(keyPress, 'guesses ' + guessList);
+
 		
 		
 		if (letterArray.indexOf(keyPress) === -1){
 			
 			if (guessList.indexOf(keyPress) == -1){ 
 				lives --;
+				lifeCount.innerHTML = '<p>Lives: ' + lives + '</p>';
 				guessList += keyPress + ' ';
+				guesses.innerHTML = '<p>Already guessed: ' + guessList + '</p>';
 			} else{
-				alert("you already guessed that letter!");
+				alert("You already guessed that letter!");
 			}
 
 		} else {
@@ -81,9 +86,17 @@ document.addEventListener("DOMContentLoaded", function(){
 					hangman.start(hardWord);
 				}
 
-				while (difficulty.firstChild) {
-					difficulty.removeChild(difficulty.firstChild);
-				}
+				// while (difficulty.firstChild) {
+				// 	difficulty.removeChild(difficulty.firstChild);
+				// }
+
+				difficulty.classList.add('fade');
+
+				lifeCount.innerHTML = '<p>Lives: ' + lives + '</p>';
+				guesses.innerHTML = '<p>Already guessed: ' + guessList + '</p>';
+				document.querySelector('.image-container').style.display = 'block';
+				document.getElementById('hangman-title').style.display = 'block';
+
 
 				document.addEventListener("keypress", function(){
 

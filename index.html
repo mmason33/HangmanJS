@@ -4,42 +4,27 @@
 		<title>HangmanJS</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" href="assets/images/originals/favicon.png" type="image/png" sizes="16x16">
-		<link rel="stylesheet" href="assets/css/reset.css" type="text/css">
+		<!-- <link rel="stylesheet" href="assets/css/reset.css" type="text/css"> -->
+		<link href="https://fonts.googleapis.com/css?family=Cutive+Mono" rel="stylesheet">
 		<link rel="stylesheet" href="assets/css/style.css" type="text/css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 	</head>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<title>Javascript tester</title>
-
-<style>
-.letterbox{
-	width:25px;
-	height:25px;
-	display:inline-block;
-	background-color:#cccccc;
-	border-bottom: 1px solid black;
-	text-align:center;
-	margin-right:5px;
-}
-.hidden{
-	visibility:hidden;
-}
-
-.show{
-	visibility:visible;
-}
-</style>
-</head>
-
-<body>
-<div id="difficulty">
-<h2>Please select your difficulty level</h2>
-<a href="#" id="easy">Easy</a>
-<a href="#" id="hard">Hard</a>
-</div>
-<div id="main"></div>
-<script src="assets/js/script.js" type="text/javascript"></script>
-</body>
-</html>
+	<body>
+	<section class="hangman-container">
+		<div id="difficulty">
+			<h1>Welcome to HangmanJS!</h1>
+			<h2>Please select your difficulty level</h2>
+			<a href="#" id="easy">Easy</a>
+			<a href="#" id="hard">Hard</a>
+		</div>
+		<h1 id="hangman-title">HangmanJS</h1>
+		<div id="lives"></div>
+		<div id="guess-list"></div>
+		<div id="main"></div>
+		<div class="image-container">
+			
+		</div>
+		<script src="assets/js/script.js" type="text/javascript"></script>
+	</section>
+	</body>
 </html>
