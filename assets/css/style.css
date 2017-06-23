@@ -1,0 +1,18 @@
+
+.letterbox {
+	width:25px;
+	height:25px;
+	display:inline-block;
+	background-color:#cccccc;
+	border-bottom: 1px solid black;
+	text-align:center;
+	margin-right:5px;
+}
+
+.hidden {
+	visibility:hidden;
+}
+
+.show {
+	visibility:visible;
+}
