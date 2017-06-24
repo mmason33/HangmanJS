@@ -9,6 +9,7 @@ var guessList = "";
 var guesses = document.getElementById('guess-list');
 var lives = 6;
 var lifeCount = document.getElementById('lives');
+var correct = 0;
 var main = document.getElementById('main');
 var difficulty = document.getElementById('difficulty');
 
@@ -50,6 +51,14 @@ class Hangman {
 
 					if ( keyPress === letterArray[i] ){
 						document.getElementById(i).className = 'show';
+						correct++;
+						if ( correct === letterArray.length) {
+
+							setTimeout( function() {
+								alert("You've won, absolutely fantastic!!!");
+							}, 1000);
+
+						}
 					}
 
 				}
@@ -70,6 +79,13 @@ const hangman = new Hangman("Hangman Game");
 
 document.addEventListener("DOMContentLoaded", function(){
 
+    AOS.init({
+      offset: 0,
+      duration: 600,
+      easing: 'ease-in-sine',
+      delay: 100,
+    });
+
 	var wordDifficultly;
 
 	function difficultyLevel(id, wordDifficultly){
@@ -86,6 +102,9 @@ document.addEventListener("DOMContentLoaded", function(){
 			}
 
 			function handleClick() {
+
+				console.log(document.getElementsByClassName('hidden'));
+
 				if ( id === 'easy') {
 					wordDifficultly = easyWord;
 					hangman.start(easyWord);
@@ -93,10 +112,6 @@ document.addEventListener("DOMContentLoaded", function(){
 					wordDifficultly = hardWord;
 					hangman.start(hardWord);
 				}
-
-				// while (difficulty.firstChild) {
-				// 	difficulty.removeChild(difficulty.firstChild);
-				// }
 
 				difficulty.style.display = 'none';
 

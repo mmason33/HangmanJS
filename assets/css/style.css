@@ -11,6 +11,7 @@ body {
 	background: url('../images/originals/dropbox.jpg') center center no-repeat;
 	background-size: cover;
 	font-family: 'Cutive Mono', monospace;
+	overflow: hidden;
 }
 
 body * {
