@@ -34,3 +34,7 @@ A hangman game made with Vanilla JavaScript
 8. Deploy to Heroku or GitHub Pages (undecided at this point)
 9. Eat lots of pizza
 10. *Eat more pizza*
+
+## Demo
+
+[https://mmason33.github.io/HangmanJS/](https://mmason33.github.io/HangmanJS/)
