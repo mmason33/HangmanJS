@@ -7,7 +7,7 @@ var easyAnswers = ['red', 'green', 'blue', 'yellow', 'black', 'orange', 'purple'
 var easyWord = easyAnswers[Math.floor(Math.random() * easyAnswers.length)];
 var guessList = "";
 var guesses = document.getElementById('guess-list');
-var lives = 10;
+var lives = 6;
 var lifeCount = document.getElementById('lives');
 var main = document.getElementById('main');
 var difficulty = document.getElementById('difficulty');
@@ -26,33 +26,41 @@ class Hangman {
 	}
 
 	handleKey(letterArray) {
+
 		var keyPress = event.key.toLowerCase();
-		// var lifeCount = document.getElementById('lives');
-		// console.log(keyPress, 'guesses ' + guessList);
 
-		
-		
-		if (letterArray.indexOf(keyPress) === -1){
-			
-			if (guessList.indexOf(keyPress) == -1){ 
-				lives --;
-				lifeCount.innerHTML = '<p>Lives: ' + lives + '</p>';
-				guessList += keyPress + ' ';
-				guesses.innerHTML = '<p>Already guessed: ' + guessList + '</p>';
-			} else{
-				alert("You already guessed that letter!");
-			}
-
+		if (event.keyCode < 65 || event.keyCode > 90) {
+			 alert('Not a valid key!');
 		} else {
 
-			for( var i = 0; i < letterArray.length; i++ ) {
+			if (letterArray.indexOf(keyPress) === -1){
+				
+				if (guessList.indexOf(keyPress) === -1){ 
+					lives --;
+					lifeCount.innerHTML = '<p>Lives: ' + lives + '</p>';
+					guessList += keyPress + ' ';
+					guesses.innerHTML = '<p>Already guessed: ' + guessList + '</p>';
+				} else{
+					if (lives !== 0) alert("You already guessed that letter!");
+				}
 
-				if ( keyPress === letterArray[i] ){
-					document.getElementById(i).className = 'show';
+			} else {
+
+				for( var i = 0; i < letterArray.length; i++ ) {
+
+					if ( keyPress === letterArray[i] ){
+						document.getElementById(i).className = 'show';
+					}
+
 				}
 
 			}
-
+			if (lives === 0) {
+				if (confirm('You ran out of lives :( - Do you want to play again?')) location.reload();
+				else {
+					lifeCount.innerHTML = '<p>Lives: :( </p>';
+				}
+			}
 		}
 	}
 }
@@ -90,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function(){
 				// 	difficulty.removeChild(difficulty.firstChild);
 				// }
 
-				difficulty.classList.add('fade');
+				difficulty.style.display = 'none';
 
 				lifeCount.innerHTML = '<p>Lives: ' + lives + '</p>';
 				guesses.innerHTML = '<p>Already guessed: ' + guessList + '</p>';
@@ -98,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function(){
 				document.getElementById('hangman-title').style.display = 'block';
 
 
-				document.addEventListener("keypress", function(){
+				document.addEventListener("keyup", function(){
 
 					hangman.handleKey(wordDifficultly);
 

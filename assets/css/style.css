@@ -32,10 +32,8 @@ h2 {
 	position: relative;
 	margin: 0 auto;
 	padding: 2rem;
-	height: 50vh;
-	min-height: 700px;
-	min-width: 900px;
-	width: 50vw;
+	height: 700px;
+	width: 900px;
 	top: 2rem;
 }
 
@@ -51,17 +49,21 @@ h2 {
 }
 
 .fade {
-	display: none;
-	animation: fade .5s ease;
+	animation: fadeOut 1s ease;
 }
 
-@keyframes fade {
-	from {display: block;opacity: 1;}
-	to{display: none; opacity: 0;}
+@keyframes fadeOut {
+	from {height: auto;}
+	to{height: 0;}
+}
+
+@keyframes fadeIn {
+	from {height: 0;opacity: 0;}
+	to{height: auto; opacity: 1;}
 }
 
 .image-container {
-	background: #666;
+	background: #ebebeb;
 	height: 400px;
 	width: 400px;
 	position: relative;
@@ -101,10 +103,30 @@ h2 {
 	margin-right:15px;
 }
 
+.letterbox:nth-of-type(odd) {
+	color: #0071e0;
+}
+
+.letterbox:nth-of-type(even) {
+	color: #666;
+}
+ 
 .hidden {
 	visibility:hidden;
 }
 
 .show {
 	visibility:visible;
+}
+
+@media screen and (max-width:1600px) {
+
+	.hangman-container {
+		height: 600px;
+	}
+
+	.image-container {
+		height: 300px;
+		width: 100%;
+	}
 }
