@@ -93,6 +93,12 @@ h2 {
 	display: none;
 }
 
+#alert {
+	text-align: center;
+	color: #0071e0;
+	height: 31px;
+}
+
 /*------------#0071e0----------------*/
 .letterbox {
 	font-size: 2em;
@@ -127,7 +133,7 @@ h2 {
 	}
 
 	.image-container {
-		height: 300px;
+		height: 270px;
 		width: 100%;
 	}
 }

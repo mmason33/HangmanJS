@@ -12,6 +12,7 @@ var lifeCount = document.getElementById('lives');
 var correct = 0;
 var main = document.getElementById('main');
 var difficulty = document.getElementById('difficulty');
+var alert = document.getElementById('alert');
 
 class Hangman {
 
@@ -31,43 +32,63 @@ class Hangman {
 		var keyPress = event.key.toLowerCase();
 
 		if (event.keyCode < 65 || event.keyCode > 90) {
-			 alert('Not a valid key!');
+				alert.textContent = 'Not a valid key!';
+				setTimeout( function(){
+					alert.textContent = '';
+				}, 2000);
 		} else {
+			if (document.getElementsByClassName('show').length !== letterArray.length) {
 
-			if (letterArray.indexOf(keyPress) === -1){
-				
-				if (guessList.indexOf(keyPress) === -1){ 
-					lives --;
-					lifeCount.innerHTML = '<p>Lives: ' + lives + '</p>';
-					guessList += keyPress + ' ';
-					guesses.innerHTML = '<p>Already guessed: ' + guessList + '</p>';
-				} else{
-					if (lives !== 0) alert("You already guessed that letter!");
-				}
-
-			} else {
-
-				for( var i = 0; i < letterArray.length; i++ ) {
-
-					if ( keyPress === letterArray[i] ){
-						document.getElementById(i).className = 'show';
-						correct++;
-						if ( correct === letterArray.length) {
-
-							setTimeout( function() {
-								alert("You've won, absolutely fantastic!!!");
-							}, 1000);
-
+				if ( letterArray.indexOf(keyPress) === -1 ) {
+					
+					if ( guessList.indexOf(keyPress) === -1 ) { 
+						lives --;
+						lifeCount.innerHTML = '<p>Lives: ' + lives + '</p>';
+						guessList += keyPress + ' ';
+						guesses.innerHTML = '<p>Already guessed: ' + guessList + '</p>';
+					} else{
+						if (lives !== 0) {
+							alert.textContent = 'You already guessed that letter!';
+							setTimeout( function(){
+								alert.textContent = '';
+							}, 2000);
 						}
 					}
 
-				}
+				} else {
 
-			}
-			if (lives === 0) {
-				if (confirm('You ran out of lives :( - Do you want to play again?')) location.reload();
-				else {
-					lifeCount.innerHTML = '<p>Lives: :( </p>';
+					for( var i = 0; i < letterArray.length; i++ ) {
+
+						if ( keyPress === letterArray[i] ){
+							document.getElementById(i).className = 'show';
+							correct++;
+							if ( correct === letterArray.length) {
+
+								alert.innerHTML = "You've won, absolutely fantastic!!!<br>Type y to play again!";
+
+								document.addEventListener('keyup', function(e) {
+
+									if ( e.key === 'y') location.reload();
+
+								});
+								
+							}
+						}
+
+					}
+
+				}
+				if (lives === 0) {
+
+					alert.innerHTML = 'You ran out of lives :( - Do you want to play again? <br><strong>Type y for yes.';
+
+					document.addEventListener( 'keyup', function(e){
+
+						if ( e.key.toLowerCase() === 'y') {
+							location.reload();
+						}
+
+					});
 				}
 			}
 		}
@@ -99,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function(){
 					return callback(e);
 				});
 
-			}
+			}//end ontime();
 
 			function handleClick() {
 
@@ -126,16 +147,13 @@ document.addEventListener("DOMContentLoaded", function(){
 					hangman.handleKey(wordDifficultly);
 
 				});
-			}
-
+			}//end handleClick();
 
 			onetime(document.getElementById(id), 'click', handleClick);
-	}
+
+	}//end difficultyLevel();
 
 	difficultyLevel('easy', easyWord);
 	difficultyLevel('hard', hardWord);
-
-
-
 
 });//.ready
