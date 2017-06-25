@@ -33,9 +33,42 @@ h2 {
 	position: relative;
 	margin: 0 auto;
 	padding: 2rem;
-	height: 700px;
+	height: 800px;
 	width: 900px;
 	top: 2rem;
+}
+
+.stand {
+	height: 260px;
+	max-height: 260px;
+}
+
+.col-4, .col-6 {
+	padding: 0 !important;
+}
+
+.head {
+	position: absolute;
+	left: 50%;
+	top: 25%;
+	z-index: 1;
+}
+
+.body {
+	position: absolute;
+	top: 41.5%;
+	left: 46%;
+}
+
+.legs {
+	position: absolute;
+	top: 60%;
+	left: 49%;
+}
+
+.hangman-images {
+	height: 50px;
+	width: 50px;
 }
 
 
@@ -97,6 +130,10 @@ h2 {
 	text-align: center;
 	color: #0071e0;
 	height: 31px;
+}
+
+.hangman-image-container {
+	text-align: center;
 }
 
 /*------------#0071e0----------------*/
