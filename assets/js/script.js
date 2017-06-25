@@ -46,6 +46,7 @@ class Hangman {
 						lifeCount.innerHTML = '<p>Lives: ' + lives + '</p>';
 						guessList += keyPress + ' ';
 						guesses.innerHTML = '<p>Already guessed: ' + guessList + '</p>';
+						document.getElementById('life-' + lives).style.visibility = 'visible';
 					} else{
 						if (lives !== 0) {
 							alert.textContent = 'You already guessed that letter!';

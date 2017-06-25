@@ -66,6 +66,10 @@ h2 {
 	left: 49%;
 }
 
+.head-box,.body-box,.leftarm-box,.rightarm-box,.leftleg-box,.rightleg-box {
+	visibility: hidden;
+}
+
 .hangman-images {
 	height: 50px;
 	width: 50px;
