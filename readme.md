@@ -29,10 +29,10 @@ A hangman game made with Vanilla JavaScript
 3. ~~Wire up the HTML markup for this app~~
 4. ~~Build initial logic of the app~~
 5. ~~Style the application accordingly~~
-6. *Implent animation and or SVG graphics*
-7. Finalize, refactor and or debug
-8. Deploy to Heroku or GitHub Pages (undecided at this point)
-9. Eat lots of pizza
+6. ~~*Implent animation and or SVG graphics*~~
+7. ~~Finalize, refactor and or debug~~
+8. ~~Deploy to Heroku or GitHub Pages (undecided at this point)*Update: added to github*~~
+9. ~~Eat lots of pizza~~
 10. *Eat more pizza*
 
 ## Demo
