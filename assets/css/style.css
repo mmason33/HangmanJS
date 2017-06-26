@@ -1,12 +1,4 @@
 
-/*html {
-	font-size:62.5%;
-}
-
-body {
-	font-size: 1.6rem;
-}*/
-
 body {
 	background: url('../images/originals/dropbox.jpg') center center no-repeat;
 	background-size: cover;
@@ -66,10 +58,6 @@ h2 {
 	left: 49%;
 }
 
-/*.head-box,.body-box,.leftarm-box,.rightarm-box,.leftleg-box,.rightleg-box {
-	visibility: hidden;
-}*/
-
 .hangman-images {
 	height: 50px;
 	width: 50px;
@@ -84,20 +72,6 @@ h2 {
 	text-align:center;
 	position: relative;
 	top: 35%;
-}
-
-.fade {
-	animation: fadeOut 1s ease;
-}
-
-@keyframes fadeOut {
-	from {height: auto;}
-	to{height: 0;}
-}
-
-@keyframes fadeIn {
-	from {height: 0;opacity: 0;}
-	to{height: auto; opacity: 1;}
 }
 
 .image-container {
