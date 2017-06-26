@@ -16,6 +16,7 @@ class Hangman {
 		let main = document.getElementById('main');
 		let difficulty = document.getElementById('difficulty');
 		let alert = document.getElementById('alert');
+		let hint = document.getElementById('hint');
 		let wordDifficultly;		
 		
 		this.start = (letterArray) => {
@@ -99,9 +100,11 @@ class Hangman {
 					if ( id === 'easy') {
 						wordDifficultly = easyWord;
 						hangman.start(easyWord);
+						hint.innerHTML = '<br><h5>Hint: Think colors...</h5>';
 					} else {
 						wordDifficultly = hardWord;
 						hangman.start(hardWord);
+						hint.innerHTML = '<br><h5>Hint: Think Javascript...</h5>';
 					}
 
 					difficulty.style.display = 'none';
