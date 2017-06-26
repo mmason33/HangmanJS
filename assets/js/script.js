@@ -1,101 +1,126 @@
 // HangmanJS
 
-var hardAnswers = ['interpoolation', 'compiler', 'isomorphic', 'transpiler', 'recursion', 'traversal', 
-'javascript', 'jquery', 'atmospherejs', 'nodejs', 'vuejs', 'angularjs', 'reactjs', 'reactivexjs', 'scope', 'inheritance'];
-var hardWord = hardAnswers[Math.floor(Math.random() * hardAnswers.length)];
-var easyAnswers = ['red', 'green', 'blue', 'yellow', 'black', 'orange', 'purple', 'white', 'brown', 'teal', 'pink', 'grey', 'maroon', 'magenta'];
-var easyWord = easyAnswers[Math.floor(Math.random() * easyAnswers.length)];
-var guessList = "";
-var guesses = document.getElementById('guess-list');
-var lives = 6;
-var lifeCount = document.getElementById('lives');
-var correct = 0;
-var main = document.getElementById('main');
-var difficulty = document.getElementById('difficulty');
-var alert = document.getElementById('alert');
-
 class Hangman {
+	constructor() {
 
-	start(letterArray) {
-
-		for( var i = 0; i < letterArray.length; i++ ) {
-
-			main.innerHTML = main.innerHTML + '<div class="letterbox">' + '<span id=' + i + ' class="hidden">' + letterArray[i] + '</span>' + '</div>';
-
-			console.log(letterArray[i]);
-
+		let hardAnswers = ['interpoolation', 'compiler', 'isomorphic', 'transpiler', 'recursion', 'traversal', 
+		'javascript', 'jquery', 'atmospherejs', 'nodejs', 'vuejs', 'angularjs', 'reactjs', 'reactivexjs', 'scope', 'inheritance'];
+		let hardWord = hardAnswers[Math.floor(Math.random() * hardAnswers.length)];
+		let easyAnswers = ['red', 'green', 'blue', 'yellow', 'black', 'orange', 'purple', 'white', 'brown', 'teal', 'pink', 'grey', 'maroon', 'magenta'];
+		let easyWord = easyAnswers[Math.floor(Math.random() * easyAnswers.length)];
+		let guessList = "";
+		let guesses = document.getElementById('guess-list');
+		let lives = 6;
+		let lifeCount = document.getElementById('lives');
+		let correct;
+		let main = document.getElementById('main');
+		let difficulty = document.getElementById('difficulty');
+		let alert = document.getElementById('alert');
+		let wordDifficultly;		
+		
+		this.start = (letterArray) => {
+			for( let i = 0; i < letterArray.length; i++ ) {
+				main.innerHTML = main.innerHTML + '<div class="letterbox">' + '<span id=' + i + ' class="hidden">' + letterArray[i] + '</span>' + '</div>';
+				console.log(letterArray[i]);
+			}
 		}
-	}
 
-	handleKey(letterArray) {
+		this.handleKey = (letterArray) => {
 
-		var keyPress = event.key.toLowerCase();
+			let keyPress = event.key.toLowerCase();
 
-		if (event.keyCode < 65 || event.keyCode > 90) {
-				alert.textContent = 'Not a valid key!';
-				setTimeout( function(){
-					alert.textContent = '';
-				}, 2000);
-		} else {
-			if (document.getElementsByClassName('show').length !== letterArray.length) {
+			if (event.keyCode < 65 || event.keyCode > 90) {
+					alert.textContent = 'Not a valid key!';
+					setTimeout( function(){
+						alert.textContent = '';
+					}, 2000);
+			} else {
+				if (document.getElementsByClassName('show').length !== letterArray.length && lives !== 0) {
 
-				if ( letterArray.indexOf(keyPress) === -1 ) {
-					
-					if ( guessList.indexOf(keyPress) === -1 ) { 
-						lives --;
-						lifeCount.innerHTML = '<p>Lives: ' + lives + '</p>';
-						guessList += keyPress + ' ';
-						guesses.innerHTML = '<p>Already guessed: ' + guessList + '</p>';
-						document.getElementById('life-' + lives).style.visibility = 'visible';
-					} else{
-						if (lives !== 0) {
-							alert.textContent = 'You already guessed that letter!';
-							setTimeout( function(){
-								alert.textContent = '';
-							}, 2000);
+					if ( letterArray.indexOf(keyPress) === -1 ) {
+						
+						if ( guessList.indexOf(keyPress) === -1 ) { 
+							lives --;
+							lifeCount.innerHTML = '<p>Lives: ' + lives + '</p>';
+							guessList += keyPress + ' ';
+							guesses.innerHTML = '<p>Already guessed: ' + guessList + '</p>';
+							document.getElementById('life-' + lives).classList.remove('hiddenBody');
+						} else if (lives !== 0){
+									alert.textContent = 'You already guessed that letter!';
+									setTimeout( function(){
+										alert.textContent = '';
+									}, 2000);
 						}
-					}
 
-				} else {
+					} else {
 
-					for( var i = 0; i < letterArray.length; i++ ) {
+						for( let i = 0; i < letterArray.length; i++ ) {
+							
+							if ( keyPress === letterArray[i] ){
+								document.getElementById(i).className = 'show';
+								correct = document.getElementsByClassName('show').length;
+								console.log(correct);
+								if ( correct === letterArray.length) {
 
-						if ( keyPress === letterArray[i] ){
-							document.getElementById(i).className = 'show';
-							correct++;
-							if ( correct === letterArray.length) {
+									alert.innerHTML = "You've won, absolutely fantastic!!!<br>Type y to play again!";
 
-								alert.innerHTML = "You've won, absolutely fantastic!!!<br>Type y to play again!";
+									document.addEventListener('keyup', function(e) {
 
-								document.addEventListener('keyup', function(e) {
+										if ( e.key === 'y') location.reload();
 
-									if ( e.key === 'y') location.reload();
-
-								});
-								
+									});
+									
+								}
 							}
+
 						}
 
 					}
+					if (lives === 0) {
 
-				}
-				if (lives === 0) {
+						alert.innerHTML = 'You ran out of lives :( - Do you want to play again? <br><strong>Type y for yes.';
 
-					alert.innerHTML = 'You ran out of lives :( - Do you want to play again? <br><strong>Type y for yes.';
+						document.addEventListener( 'keyup', function(e){
 
-					document.addEventListener( 'keyup', function(e){
+							if ( e.key.toLowerCase() === 'y') {
+								location.reload();
+							}
 
-						if ( e.key.toLowerCase() === 'y') {
-							location.reload();
-						}
-
-					});
+						});
+					}
 				}
 			}
 		}
+
+		this.difficultyLevel = (id, wordDifficultly) => {
+
+				function handleClick() {
+
+					if ( id === 'easy') {
+						wordDifficultly = easyWord;
+						hangman.start(easyWord);
+					} else {
+						wordDifficultly = hardWord;
+						hangman.start(hardWord);
+					}
+
+					difficulty.style.display = 'none';
+					lifeCount.innerHTML = '<p>Lives: ' + lives + '</p>';
+					guesses.innerHTML = '<p>Already guessed: ' + guessList + '</p>';
+					document.querySelector('.image-container').style.display = 'block';
+					document.getElementById('hangman-title').style.display = 'block';
+
+					document.addEventListener("keyup", function(event){
+						
+						hangman.handleKey(wordDifficultly);
+
+					});
+				}//end handleClick();
+
+				document.getElementById(id).addEventListener('click', handleClick);
+		}
 	}
 }
-
 
 const hangman = new Hangman("Hangman Game");
 
@@ -108,53 +133,7 @@ document.addEventListener("DOMContentLoaded", function(){
       delay: 100,
     });
 
-	var wordDifficultly;
-
-	function difficultyLevel(id, wordDifficultly){
-
-			function onetime(node, type, callback) {
-
-				node.addEventListener(type, function(e) {
-
-					e.target.removeEventListener(e.type, arguments.callee);
-
-					return callback(e);
-				});
-
-			}//end ontime();
-
-			function handleClick() {
-
-				console.log(document.getElementsByClassName('hidden'));
-
-				if ( id === 'easy') {
-					wordDifficultly = easyWord;
-					hangman.start(easyWord);
-				} else {
-					wordDifficultly = hardWord;
-					hangman.start(hardWord);
-				}
-
-				difficulty.style.display = 'none';
-
-				lifeCount.innerHTML = '<p>Lives: ' + lives + '</p>';
-				guesses.innerHTML = '<p>Already guessed: ' + guessList + '</p>';
-				document.querySelector('.image-container').style.display = 'block';
-				document.getElementById('hangman-title').style.display = 'block';
-
-
-				document.addEventListener("keyup", function(){
-
-					hangman.handleKey(wordDifficultly);
-
-				});
-			}//end handleClick();
-
-			onetime(document.getElementById(id), 'click', handleClick);
-
-	}//end difficultyLevel();
-
-	difficultyLevel('easy', easyWord);
-	difficultyLevel('hard', hardWord);
+	hangman.difficultyLevel('easy', this.easyWord);
+	hangman.difficultyLevel('hard', this.hardWord);
 
 });//.ready

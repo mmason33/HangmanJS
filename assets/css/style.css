@@ -33,9 +33,9 @@ h2 {
 	position: relative;
 	margin: 0 auto;
 	padding: 2rem;
-	height: 800px;
+	height: 600px;
 	width: 900px;
-	top: 2rem;
+	top: 6rem;
 }
 
 .stand {
@@ -66,9 +66,9 @@ h2 {
 	left: 49%;
 }
 
-.head-box,.body-box,.leftarm-box,.rightarm-box,.leftleg-box,.rightleg-box {
+/*.head-box,.body-box,.leftarm-box,.rightarm-box,.leftleg-box,.rightleg-box {
 	visibility: hidden;
-}
+}*/
 
 .hangman-images {
 	height: 50px;
@@ -102,8 +102,8 @@ h2 {
 
 .image-container {
 	background: #ebebeb;
-	height: 400px;
-	width: 400px;
+	height: 270px;
+	width: 100%;
 	position: relative;
 	margin: 0 auto;
 	top: 3rem;
@@ -167,14 +167,13 @@ h2 {
 	visibility:visible;
 }
 
-@media screen and (max-width:1600px) {
+.hiddenBody {
+	visibility: hidden;
+}
 
+
+@media screen and (max-width:1536px){
 	.hangman-container {
-		height: 600px;
-	}
-
-	.image-container {
-		height: 270px;
-		width: 100%;
+		top: 1rem;
 	}
 }
