@@ -124,16 +124,19 @@ class Hangman {
 
 const hangman = new Hangman("Hangman Game");
 
-document.addEventListener("DOMContentLoaded", function(){
+	document.addEventListener("DOMContentLoaded", function(){
+		if ( window.innerWidth > 1200) {
+		    AOS.init({
+		      offset: 0,
+		      duration: 600,
+		      easing: 'ease-in-sine',
+		      delay: 100,
+		    });
 
-    AOS.init({
-      offset: 0,
-      duration: 600,
-      easing: 'ease-in-sine',
-      delay: 100,
-    });
+			hangman.difficultyLevel('easy', this.easyWord);
+			hangman.difficultyLevel('hard', this.hardWord);
+		} else {
+			document.write('<h3>This project is not supported on smaller screen sizes, please view on a desktop or laptop computer for the best experience.</h3><h4>Support for mobile may come in the future!! :)');
+		}
 
-	hangman.difficultyLevel('easy', this.easyWord);
-	hangman.difficultyLevel('hard', this.hardWord);
-
-});//.ready
+	});//.ready
