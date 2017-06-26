@@ -29,7 +29,7 @@ class Hangman {
 
 			let keyPress = event.key.toLowerCase();
 
-			if (event.keyCode < 65 || event.keyCode > 90) {
+			if ((event.keyCode < 65 && lives !== 0 && correct !== letterArray.length) || (event.keyCode > 90 && lives !== 0 && correct !== letterArray.length)) {
 					alert.textContent = 'Not a valid key!';
 					setTimeout( function(){
 						alert.textContent = '';
@@ -45,7 +45,7 @@ class Hangman {
 							guessList += keyPress + ' ';
 							guesses.innerHTML = '<p>Already guessed: ' + guessList + '</p>';
 							document.getElementById('life-' + lives).classList.remove('hiddenBody');
-						} else if (lives !== 0){
+						} else if (lives !== 0) {
 									alert.textContent = 'You already guessed that letter!';
 									setTimeout( function(){
 										alert.textContent = '';
@@ -66,7 +66,7 @@ class Hangman {
 
 									document.addEventListener('keyup', function(e) {
 
-										if ( e.key === 'y') location.reload();
+										if ( e.key.toLowerCase() === 'y') location.reload();
 
 									});
 									
@@ -122,7 +122,7 @@ class Hangman {
 	}
 }
 
-const hangman = new Hangman("Hangman Game");
+const hangman = new Hangman();
 
 	document.addEventListener("DOMContentLoaded", function(){
 		if ( window.innerWidth > 1200) {
