@@ -105,7 +105,17 @@ h2 {
 	display: none;
 }
 
-#alert, #hint {
+#alert {
+	text-align: center;
+	height: 31px;
+	color: #cc0000;
+}
+
+#directions {
+	display: none;
+}
+
+#hint, #directions {
 	text-align: center;
 	color: #0071e0;
 	height: 31px;

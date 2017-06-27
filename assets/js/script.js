@@ -18,6 +18,7 @@ class Hangman {
 		let difficulty = document.getElementById('difficulty');
 		let alert = document.getElementById('alert');
 		let hint = document.getElementById('hint');
+		let directions = document.getElementById('directions');
 		let wordDifficultly;		
 		
 		//select a random word from the wordList arrays based on choice of difficulty
@@ -104,6 +105,7 @@ class Hangman {
 					}
 					//after click remove the #difficulty node and show #afterClick node
 					difficulty.style.display = 'none';
+					directions.style.display = 'block';
 					lifeCount.innerHTML = '<p>Lives: ' + lives + '</p>';
 					guesses.innerHTML = '<p>Already guessed: ' + guessList + '</p>';
 					document.querySelector('.image-container').style.display = 'block';
