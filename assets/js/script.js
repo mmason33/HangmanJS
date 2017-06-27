@@ -78,8 +78,8 @@ class Hangman {
 							}
 						}
 					}
+					//code block when lives === 0 - all conditions about are contingent upon lives !== 0
 					if (lives === 0) {
-						//code block when lives === 0 - all conditions about are contingent upon lives !== 0
 						alert.innerHTML = 'You ran out of lives :( - Do you want to play again? <br><strong>Type y for yes.';
 						document.addEventListener( 'keyup', function(e){
 							if ( e.key.toLowerCase() === 'y') location.reload();//reload browser
