@@ -128,7 +128,7 @@ class Hangman {
 const hangman = new Hangman();
 
 	document.addEventListener("DOMContentLoaded", function(){
-		if ( window.innerWidth > 1200) {
+		if ( window.innerWidth > 1024) {
 		    AOS.init({
 		      offset: 0,
 		      duration: 600,
